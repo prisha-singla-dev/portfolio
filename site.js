@@ -77,6 +77,42 @@
   els.forEach(el => obs.observe(el));
 })();
 
+// ---------- Live Substack feed (newsletter.html only) ----------
+(function(){
+  const grid = document.getElementById('newsletter-grid');
+  const countEl = document.getElementById('newsletter-count');
+  if (!grid) return;
+
+  const feedUrl = 'https://shipitdebugit.substack.com/feed';
+  const apiUrl = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(feedUrl);
+
+  fetch(apiUrl)
+    .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    .then(data => {
+      if (!data.items || !data.items.length) return Promise.reject('empty feed');
+      grid.innerHTML = data.items.map(item => {
+        const date = new Date(item.pubDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+        const desc = (item.description || '').replace(/<[^>]*>/g, '').slice(0, 140).trim();
+        return `<div class="writing-card">
+          <div class="writing-card-head">${date}</div>
+          <div class="embed-frame-wrap">
+            <div class="substack-card">
+              <div class="sc-icon">S</div>
+              <h4>${item.title}</h4>
+              <p>${desc}${desc.length >= 140 ? '…' : ''}</p>
+              <a href="${item.link}" target="_blank" rel="noopener">Read on Substack ↗</a>
+            </div>
+          </div>
+        </div>`;
+      }).join('');
+      if (countEl) countEl.textContent = data.items.length + (data.items.length === 1 ? ' post · live' : ' posts · live');
+    })
+    .catch(() => {
+      // Leave the static fallback cards already in the HTML untouched
+      if (countEl) countEl.textContent = 'showing recent posts';
+    });
+})();
+
 // ---------- Graceful image fallback ----------
 // Usage: <img data-fallback-parent onerror="imgFallback(this)">
 function imgFallback(img){
@@ -104,7 +140,7 @@ function imgFallback(img){
         <div class="gh-stat-row"><span>Profile since</span><span class="n">${new Date(user.created_at).getFullYear()}</span></div>
       `;
     })
-    .catch(() => { if (statsBox) statsBox.innerHTML = '<div class="gh-stat-row" style="border-top:none;">Live stats temporarily unavailable — <a href="https://github.com/prisha-singla-dev" style="color:var(--cobalt);" target="_blank" rel="noopener">view on GitHub ↗</a></div>'; });
+    .catch(() => { if (statsBox) statsBox.innerHTML = '<div class="gh-stat-row" style="border-top:none;">Live stats temporarily unavailable , <a href="https://github.com/prisha-singla-dev" style="color:var(--cobalt);" target="_blank" rel="noopener">view on GitHub ↗</a></div>'; });
 
   fetch(`https://api.github.com/users/${username}/repos?per_page=100`)
     .then(r => r.ok ? r.json() : Promise.reject(r.status))
@@ -128,5 +164,5 @@ function imgFallback(img){
         }, 100);
       });
     })
-    .catch(() => { if (langBox) langBox.innerHTML = '<div class="gh-stat-row" style="border-top:none;">Live data temporarily unavailable — <a href="https://github.com/prisha-singla-dev" style="color:var(--cobalt);" target="_blank" rel="noopener">view on GitHub ↗</a></div>'; });
+    .catch(() => { if (langBox) langBox.innerHTML = '<div class="gh-stat-row" style="border-top:none;">Live data temporarily unavailable , <a href="https://github.com/prisha-singla-dev" style="color:var(--cobalt);" target="_blank" rel="noopener">view on GitHub ↗</a></div>'; });
 })();
