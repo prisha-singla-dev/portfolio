@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CodeSentinel — Prisha Singla</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="booting">
+
+<div id="boot">
+  <div class="boot-lines">
+    <div>$ booting codesentinel.sys</div>
+    <div>$ mounting github · vercel · substack</div>
+    <div>$ loading 4 review agents</div>
+    <div class="ok">$ status: <span class="ok">ready</span> <span class="blink">▍</span></div>
+  </div>
+</div>
+
+<div class="spotlight" id="spotlight"></div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo"><span class="dot-live"></span> PRISHA.SINGLA / ai-engineer</div>
+    <nav class="nav-links">
+      <a href="index.html#work">work</a>
+      <a href="index.html#skills">skills</a>
+      <a href="writing.html">writing</a>
+      <a href="featured.html">featured</a>
+      <a href="index.html#experience">experience</a>
+    </nav>
+    <a class="nav-cta" href="mailto:prishasingla23@gmail.com">Email me →</a>
+  </div>
+</header>
+
+<div class="wrap detail-hero">
+  <a class="back-link load-anim load-1" href="index.html#work">← Back to work</a>
+  <span class="badge cobalt load-anim load-2" style="display:inline-block;margin-bottom:16px;">LATEST · JUNE 2026</span>
+  <h1 class="hero-name load-anim load-3" style="font-size:clamp(32px,6vw,60px);">CodeSentinel</h1>
+  <p class="hero-sub load-anim load-4">A production multi-agent AI code review platform. Four specialized LangGraph agents read every pull request in parallel — one hunts security holes, one profiles performance, one checks logic, one checks style — and post their findings straight into your GitHub review workflow.</p>
+
+  <div class="detail-links load-anim load-5">
+    <a class="btn btn-primary" href="https://multi-agent-code-review-iota.vercel.app/" target="_blank" rel="noopener">Live demo ↗</a>
+    <a class="btn btn-ghost" href="https://github.com/prisha-singla-dev/multi-agent-code-review" target="_blank" rel="noopener">GitHub repo ↗</a>
+    <a class="btn btn-ghost" href="https://shipitdebugit.substack.com/p/multi-agent-code-review-what-the" target="_blank" rel="noopener">Read the write-up ↗</a>
+  </div>
+</div>
+
+<section style="border-top:none;padding-top:0;">
+  <div class="wrap">
+
+    <div class="detail-block reveal">
+      <h3>How it works</h3>
+      <ul class="project-desc" style="font-size:16px;">
+        <li>Four specialized LangGraph agents analyze pull requests in parallel — security vulnerabilities, performance bottlenecks, logical defects, and code quality — each producing structured, review-ready findings.</li>
+        <li>Structured JSON enforcement plus a response-repair step catches malformed model output before it reaches the review, instead of surfacing a broken comment on someone's PR.</li>
+        <li>A cascading fallback chain across seven LLM providers means a single provider outage or rate limit never takes the reviewer offline — it just moves to the next provider in the chain.</li>
+        <li>Findings post directly into GitHub's native PR review flow, so it fits into a workflow engineers already use instead of asking them to check a separate dashboard.</li>
+      </ul>
+      <div class="project-stats" style="margin-top:22px;">
+        <div class="pstat"><span class="n cobalt">4</span><span class="l">parallel review agents</span></div>
+        <div class="pstat"><span class="n cobalt">7</span><span class="l">provider fallback chain</span></div>
+        <div class="pstat"><span class="n cobalt">0</span><span class="l">silent failures</span></div>
+      </div>
+      <div class="project-stack" style="margin-top:18px;">
+        <span class="stack-pill">LangGraph</span><span class="stack-pill">FastAPI</span><span class="stack-pill">React / Vite</span><span class="stack-pill">Gemini → OpenRouter</span><span class="stack-pill">Render</span><span class="stack-pill">Vercel</span>
+      </div>
+    </div>
+
+    <div class="detail-block reveal">
+      <h3>Demo walkthrough</h3>
+      <div class="video-frame">
+        <video controls preload="metadata" poster="codesentinel-poster.jpg">
+          <source src="codesentinel-demo.mp4" type="video/mp4">
+        </video>
+        <div class="video-placeholder" id="video-fallback" style="pointer-events:none;">
+          <span>▶</span>
+          <span>Video slot ready — save your file as <b style="color:var(--text-dim)">codesentinel-demo.mp4</b> (and an optional thumbnail as <b style="color:var(--text-dim)">codesentinel-poster.jpg</b>) next to index.html</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="detail-block reveal">
+      <h3>From the build log</h3>
+      <div class="embed-row">
+        <div class="embed-card">
+          <div class="embed-card-head"><span>Substack</span><a href="https://shipitdebugit.substack.com/p/multi-agent-code-review-what-the" target="_blank" rel="noopener">Open ↗</a></div>
+          <div class="embed-frame-wrap">
+            <div class="substack-card">
+              <div class="sc-icon">S</div>
+              <h4>Multi-Agent Code Review: What I Actually Learned</h4>
+              <p>Field notes from building CodeSentinel — semantic caching thresholds, SDK gotchas, and why ML routing only pays off past a certain request volume.</p>
+              <a href="https://shipitdebugit.substack.com/p/multi-agent-code-review-what-the" target="_blank" rel="noopener">Read on Substack ↗</a>
+            </div>
+          </div>
+        </div>
+        <div class="embed-card">
+          <div class="embed-card-head"><span>LinkedIn</span><a href="https://www.linkedin.com/posts/prisha-singla_aiengineering-opensource-buildinpublic-ugcPost-7475395235465064448-8ZG8/" target="_blank" rel="noopener">Open ↗</a></div>
+          <div class="embed-frame-wrap" style="background:#fff;">
+            <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7475395235465064448" height="320" frameborder="0" allowfullscreen loading="lazy" title="LinkedIn post"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <a class="btn btn-ghost reveal" href="llm-cost-firewall.html">Next case study: LLM Cost Firewall →</a>
+  </div>
+</section>
+
+<footer>Built by Prisha Singla — no template, no page builder. Just this file.</footer>
+
+<script src="site.js"></script>
+<script>
+  // Hide the video placeholder once a real video file loads successfully
+  document.addEventListener('DOMContentLoaded', () => {
+    const video = document.querySelector('.video-frame video');
+    const fallback = document.getElementById('video-fallback');
+    if (video) {
+      video.addEventListener('loadedmetadata', () => { if (fallback) fallback.style.display = 'none'; });
+      video.addEventListener('error', () => { if (fallback) fallback.style.display = 'flex'; });
+    }
+  });
+</script>
+</body>
+</html>
