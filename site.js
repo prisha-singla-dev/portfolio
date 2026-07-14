@@ -93,10 +93,15 @@
       grid.innerHTML = data.items.map(item => {
         const date = new Date(item.pubDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
         const desc = (item.description || '').replace(/<[^>]*>/g, '').slice(0, 140).trim();
+        const thumb = item.thumbnail && item.thumbnail.trim();
+        const media = thumb
+          ? `<img src="${thumb}" alt="" class="sc-thumb" onerror="this.parentElement.classList.add('no-thumb')">`
+          : '';
         return `<div class="writing-card">
           <div class="writing-card-head">${date}</div>
           <div class="embed-frame-wrap">
-            <div class="substack-card">
+            <div class="substack-card ${thumb ? 'has-thumb' : ''}">
+              ${media}
               <div class="sc-icon">S</div>
               <h4>${item.title}</h4>
               <p>${desc}${desc.length >= 140 ? '…' : ''}</p>
@@ -140,7 +145,7 @@ function imgFallback(img){
         <div class="gh-stat-row"><span>Profile since</span><span class="n">${new Date(user.created_at).getFullYear()}</span></div>
       `;
     })
-    .catch(() => { if (statsBox) statsBox.innerHTML = '<div class="gh-stat-row" style="border-top:none;">Live stats temporarily unavailable , <a href="https://github.com/prisha-singla-dev" style="color:var(--cobalt);" target="_blank" rel="noopener">view on GitHub ↗</a></div>'; });
+    .catch(() => { if (statsBox) statsBox.innerHTML = '<div class="gh-stat-row" style="border-top:none;">Live stats temporarily unavailable — <a href="https://github.com/prisha-singla-dev" style="color:var(--cobalt);" target="_blank" rel="noopener">view on GitHub ↗</a></div>'; });
 
   fetch(`https://api.github.com/users/${username}/repos?per_page=100`)
     .then(r => r.ok ? r.json() : Promise.reject(r.status))
@@ -164,5 +169,5 @@ function imgFallback(img){
         }, 100);
       });
     })
-    .catch(() => { if (langBox) langBox.innerHTML = '<div class="gh-stat-row" style="border-top:none;">Live data temporarily unavailable , <a href="https://github.com/prisha-singla-dev" style="color:var(--cobalt);" target="_blank" rel="noopener">view on GitHub ↗</a></div>'; });
+    .catch(() => { if (langBox) langBox.innerHTML = '<div class="gh-stat-row" style="border-top:none;">Live data temporarily unavailable — <a href="https://github.com/prisha-singla-dev" style="color:var(--cobalt);" target="_blank" rel="noopener">view on GitHub ↗</a></div>'; });
 })();
