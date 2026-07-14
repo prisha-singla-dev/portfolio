@@ -145,7 +145,7 @@ function imgFallback(img){
         <div class="gh-stat-row"><span>Profile since</span><span class="n">${new Date(user.created_at).getFullYear()}</span></div>
       `;
     })
-    .catch(() => { if (statsBox) statsBox.innerHTML = '<div class="gh-stat-row" style="border-top:none;">Live stats temporarily unavailable — <a href="https://github.com/prisha-singla-dev" style="color:var(--cobalt);" target="_blank" rel="noopener">view on GitHub ↗</a></div>'; });
+    .catch(() => { if (statsBox) statsBox.innerHTML = '<div class="gh-stat-row" style="border-top:none;">Live stats temporarily unavailable, <a href="https://github.com/prisha-singla-dev" style="color:var(--cobalt);" target="_blank" rel="noopener">view on GitHub ↗</a></div>'; });
 
   fetch(`https://api.github.com/users/${username}/repos?per_page=100`)
     .then(r => r.ok ? r.json() : Promise.reject(r.status))
@@ -169,5 +169,5 @@ function imgFallback(img){
         }, 100);
       });
     })
-    .catch(() => { if (langBox) langBox.innerHTML = '<div class="gh-stat-row" style="border-top:none;">Live data temporarily unavailable — <a href="https://github.com/prisha-singla-dev" style="color:var(--cobalt);" target="_blank" rel="noopener">view on GitHub ↗</a></div>'; });
+    .catch(() => { if (langBox) langBox.innerHTML = '<div class="gh-stat-row" style="border-top:none;">Live data temporarily unavailable, <a href="https://github.com/prisha-singla-dev" style="color:var(--cobalt);" target="_blank" rel="noopener">view on GitHub ↗</a></div>'; });
 })();
